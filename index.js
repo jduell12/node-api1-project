@@ -47,6 +47,30 @@ server.get("/api/users/:id", (req, res) => {
   }
 });
 
+//creates user using information sent inside request body
+server.post("/api/users", (req, res) => {
+  try {
+    const userInfo = req.body;
+
+    if (!userInfo.name || !userInfo.bio) {
+      res
+        .status(400)
+        .json({ errorMessage: "Please proivide name and bio for the user." });
+    } else {
+      userInfo.id = shortid.generate();
+      users.push(userInfo);
+      res.status(201).json(userInfo);
+    }
+  } catch (err) {
+    res
+      .status(500)
+      .json({
+        errorMessage:
+          "There was an error while saving the user to the database",
+      });
+  }
+});
+
 server.listen(PORT, () => {
   console.log("Server listening on port ", PORT);
 });
