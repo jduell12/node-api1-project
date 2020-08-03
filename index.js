@@ -28,9 +28,23 @@ server.get("/api/users", (req, res) => {
 
 //retus the user object with specified id
 server.get("/api/users/:id", (req, res) => {
-  const userId = req.params;
+  try {
+    const { userId } = req.params;
 
-  users.find();
+    let userFound = users.find((user) => user.id === userId);
+
+    if (userFound) {
+      res.status(200).json(userFound);
+    } else {
+      res.status(404).json({
+        errorMessage: "The user with the specified ID does not exist.",
+      });
+    }
+  } catch (err) {
+    res
+      .status(500)
+      .json({ errorMessage: "The user information could not be retrieved." });
+  }
 });
 
 server.listen(PORT, () => {
