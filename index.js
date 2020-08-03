@@ -99,6 +99,27 @@ server.put("/api/users/:id", (req, res) => {
   }
 });
 
+//removes the user with the specified id and returns the deleted user
+server.delete("/api/users/:id", (req, res) => {
+  try {
+    const { id } = req.params;
+    const deleted = users.find((user) => user.id === id);
+
+    if (deleted) {
+      users = users.filter((user) => user.id !== id);
+      res.status(200).json(deleted);
+    } else {
+      res
+        .status(404)
+        .json({ message: "The user with the specified ID does not exist" });
+    }
+  } catch (err) {
+    res
+      .status(500)
+      .json({ errorMessage: "The user with the specified ID does not exist." });
+  }
+});
+
 server.listen(PORT, () => {
   console.log("Server listening on port ", PORT);
 });
