@@ -4,7 +4,7 @@
   "description": "## Topics",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1", 
+    "test": "echo \"Error: no test specified\" && exit 1",
     "server": "nodemon index.js"
   },
   "repository": {
@@ -20,5 +20,9 @@
   "homepage": "https://github.com/jduell12/node-api1-project#readme",
   "devDependencies": {
     "nodemon": "^2.0.4"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "shortid": "^2.2.15"
   }
 }
