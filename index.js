@@ -15,8 +15,22 @@ let users = [
   },
 ];
 
+//returns array of users
 server.get("/api/users", (req, res) => {
-  res.status(200).json(users);
+  try {
+    res.status(200).json(users);
+  } catch (err) {
+    res
+      .status(500)
+      .json({ errorMessage: "The users information could not be retrieved." });
+  }
+});
+
+//retus the user object with specified id
+server.get("/api/users/:id", (req, res) => {
+  const userId = req.params;
+
+  users.find();
 });
 
 server.listen(PORT, () => {
