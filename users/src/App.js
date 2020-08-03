@@ -41,7 +41,6 @@ function App() {
       </Switch>
       <button onClick={() => history.push("/add")}>Add User</button>
       <Link to="/">Home</Link>
-      <ReactQueryDevtools />
     </div>
   );
 }
